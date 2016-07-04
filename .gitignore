@@ -4,6 +4,7 @@ tickets.json
 Ticket API Test.py
 /.idea/*
 .idea/vcs.xml
+*.html
 
 # Compiled source #
 ###################
