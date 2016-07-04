@@ -48,11 +48,7 @@ def get_tickets(domain, usr, pwd):
         url = j['next_page']
         res = requests.get(url, auth=(usr, pwd))
         data = res.json()
-        print(j['tickets'])
         j['tickets'] += data['tickets']
-        print(j['tickets'])
         j['next_page'] = data['next_page']
-        print(url, j['next_page'])
 
-    print(len(j['tickets']))
     return j

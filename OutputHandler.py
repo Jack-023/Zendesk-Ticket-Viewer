@@ -28,17 +28,30 @@ def print_ticket(curr_page, user_dic, tickets, id):
     done = False
     for t in tickets['tickets'][(curr_page-1) * 25:curr_page * 25]: #search through tickets on the current page.
         if int(t['id']) == id:
-            created = datetime.date(int(t['created_at'][:4]), int(t['created_at'][5:7]), int(t['created_at'][8:10]))
+            created= datetime.datetime(int(t['created_at'][:4]), int(t['created_at'][5:7]), int(t['created_at'][8:10]),
+                                        int(t['created_at'][11:13]), int(t['created_at'][14:16]), int(t['created_at'][17:19]))
+            if created.hour < 12:
+                AM = True
+                if created.hour == 0:
+                    created += datetime.timedelta(hours=12) # This is to use 12 hour time.
+            else:
+                AM = False
+                if created.hour != 12:
+                    created += datetime.timedelta(hours=-12) # For 12 hour time.
+
+            print(t['created_at'])
             print("Ticket", str(id) + ':', t['subject'])
             print('requested by',
                   (user_dic[t['requester_id']] if t['requester_id'] in user_dic else t['requester_id']),
                   'on', calendar.day_abbr[created.weekday()], calendar.month_abbr[created.month], str(created.day),
-                  str(created.year))
+                  str(created.year), 'at', str(created.hour) + ":" + str(created.minute) +
+                  ("AM" if AM else "PM"), "UTC")
             print() #for nicer formatting
             print(t['description'])
 
             done = True
             break
+
     if not done:
         print("Ticket with id {id} not found on the current page.".format(id=id))
 
