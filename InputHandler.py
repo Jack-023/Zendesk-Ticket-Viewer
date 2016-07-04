@@ -82,6 +82,9 @@ def main_input(inp):
         else:
             print("You are on the first page, you can't go back any further.\n")
 
+    elif inp.isdigit():
+        id = int(inp)
+        OutputHandler.print_ticket(current_page, user_dic, tickets, id)
 
     elif inp.lower() == 'q' or inp.lower() == 'quit':
         quit()
