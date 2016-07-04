@@ -1,19 +1,31 @@
 #! python3
 
-import json, datetime, calendar
-import InputHandler, API_Requests as api
+# This is the main file for Zendesk Ticket Viewer.
+# This is a command line program that uses the Zendesk API to display ticket information.
+
+import InputHandler, API_Requests as api, OutputHandler
 
 
-while (True):
+print("Welcome to Zendesk Ticket Viewer by Jack Jordan.")
 
-    print("Welcome to Zendesk Ticket Viewer by Jack Jordan.")
+domain = InputHandler.get_domain()
 
-    domain = InputHandler.get_domain()
+usr, pwd = InputHandler.get_acc()
 
-    usr, pwd = InputHandler.get_acc()
+# print(domain, usr, pwd)
 
-    tickets = api.get_tickets(domain, usr, pwd)
+InputHandler.tickets = api.get_tickets(domain, usr, pwd)
 
-    print(tickets)
+InputHandler.user_dic = api.get_user_dictionary(domain, usr, pwd)
 
-    user_dic = api.get_user_dictionary(domain, usr, pwd)
+InputHandler.current_page = 1
+
+InputHandler.main_input(None)
+
+while True:
+
+    InputHandler.main_input(input("Enter a ticket number to view that ticket or enter one of the letters in brackets" +
+                                  " below:\n" +
+                                  "(N)ext page.\n" +
+                                  "(P)revious page.\n" +
+                                  "(Q)uit\n\n> "))
