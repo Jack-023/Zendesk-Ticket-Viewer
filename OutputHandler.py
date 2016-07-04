@@ -39,7 +39,6 @@ def print_ticket(curr_page, user_dic, tickets, id):
                 if created.hour != 12:
                     created += datetime.timedelta(hours=-12) # For 12 hour time.
 
-            print(t['created_at'])
             print("Ticket", str(id) + ':', t['subject'])
             print('requested by',
                   (user_dic[t['requester_id']] if t['requester_id'] in user_dic else t['requester_id']),
