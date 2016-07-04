@@ -18,12 +18,7 @@ def get_user_name():
 
 
     while (not valid_input):
-        # usr = input("Please enter your email address: ")
-        f = open('acc.txt', 'r')
-        usr = f.readline().strip()
-        usr = f.readline().strip()
-        f.close()
-
+        usr = input("Please enter your email address: ")
         valid_input = re.fullmatch(regex, usr)
         if not valid_input:
             print("Incorrect email address.", usr)
@@ -32,22 +27,11 @@ def get_user_name():
 
 
 def get_pwd():
-    f = open('acc.txt', 'r')
-    usr = f.readline().strip()
-    usr = f.readline().strip()
-    usr = f.readline().strip()
-    f.close()
-    return usr
-
     return getpass.getpass("Please enter your password: ")
 
 
 def get_domain():
-    # return input("Please enter your Zendesk sub-domain (eg. sub_domain in  {sub_domain}.zendesk.com): ")
-    f = open('acc.txt', 'r')
-    usr = f.readline().strip()
-    f.close()
-    return usr
+    return input("Please enter your Zendesk sub-domain (eg. sub_domain in  {sub_domain}.zendesk.com): ")
 
 def get_acc():
     usr = get_user_name()

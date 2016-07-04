@@ -31,6 +31,8 @@ def get_tickets(domain, usr, pwd):
     # Takes sub-domain, user email address and password and returns a dictionary containing the returned JSON from the
     # API call
 
+    print("Downloading tickets...\n")
+
     url = 'https://{sub_domain}.zendesk.com/api/v2/tickets.json'.format(sub_domain=domain)
 
     # Do the HTTP get request
