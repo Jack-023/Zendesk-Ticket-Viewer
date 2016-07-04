@@ -1,7 +1,7 @@
 #! python3
 
-import json, requests
-import InputHandler
+import json, datetime, calendar
+import InputHandler, API_Requests as api
 
 
 while (True):
@@ -12,18 +12,8 @@ while (True):
 
     usr, pwd = InputHandler.get_acc()
 
-    url = 'https://{sub_domain}.zendesk.com/api/v2/tickets.json'.format(sub_domain = domain)
+    tickets = api.get_tickets(domain, usr, pwd)
 
-    # Do the HTTP get request
-    res = requests.get(url, auth=(usr,pwd))
+    print(tickets)
 
-    # Check for HTTP codes other than 200
-    if res.status_code != 200:
-        print('Status:', res.status_code, 'Problem with the request. Exiting.')
-        exit()
-
-
-    else:
-        tickets = res.json()
-
-        print(tickets)
+    user_dic = api.get_user_dictionary(domain, usr, pwd)
