@@ -9,9 +9,9 @@ Run "Zendesk Ticket Viewer.py" in Python 3 (tested in 3.5). Once you have starte
 
 After you have done this it will download all the tickets on your account. This may take a few seconds. Once it has downloaded the tickets, it will display details for the first 25 tickets.
 
-This is in the format:
+The tickets are in this format:
 
-Ticket _id_: _first 20 characters of subject_(...) requested by _requester's name_ on _date_
+Ticket **id**: **first 20 characters of subject**(...) requested by **requester's name** on **date**
 
 From here it will give you a number of input prompts. You can enter a letter (case insensitive) in brackets or a ticket ID (from those displayed) to execute the relevant command.
 
@@ -20,4 +20,4 @@ After you check the full details of a ticket. You must press enter to continue b
 == Known issues
 The program will crash if you have no internet connection. I don't know how to fix this but the software is useless if you don't have a connection so it is not super important to fix.
 
-This _may_ cause a crash if there is no API response but I am not sure.
+This **may** cause a crash if there is no API response but I am not sure.
