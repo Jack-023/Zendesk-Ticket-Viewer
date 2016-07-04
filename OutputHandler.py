@@ -10,7 +10,7 @@ def print_page(curr_page, user_dic, tickets):
 
     # Print the current page of tickets to the console.
 
-    print('Displaying tickets. Page', str(curr_page), 'of', str(len(tickets['tickets']) // 25) + '.\n')
+    print('Displaying tickets. Page', str(curr_page), 'of', str(len(tickets['tickets']) // 25 + 1) + '.\n')
 
     for t in tickets['tickets'][(curr_page-1) * 25:curr_page * 25]:
         created = datetime.date(int(t['created_at'][:4]), int(t['created_at'][5:7]), int(t['created_at'][8:10]))

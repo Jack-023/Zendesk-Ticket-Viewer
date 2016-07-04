@@ -67,7 +67,7 @@ def main_input(inp):
         OutputHandler.print_page(current_page, user_dic, tickets)
 
     elif inp.lower() == 'n':
-        if current_page < len(tickets['tickets']) // 25:
+        if current_page < len(tickets['tickets']) // 25 + 1:
             current_page += 1
             OutputHandler.print_page(current_page, user_dic, tickets)
 

@@ -30,6 +30,7 @@ def get_user_dictionary(domain, usr, pwd):
 def get_tickets(domain, usr, pwd):
     # Takes sub-domain, user email address and password and returns a dictionary containing the returned JSON from the
     # API call
+
     url = 'https://{sub_domain}.zendesk.com/api/v2/tickets.json'.format(sub_domain=domain)
 
     # Do the HTTP get request
@@ -40,4 +41,18 @@ def get_tickets(domain, usr, pwd):
         print('Status:', res.status_code, 'Problem with the request. Exiting.')
         exit()
 
-    return res.json()
+    j = res.json()
+
+
+    while j['next_page'] != None: # this loop is needed to grab all tickets since each call only returns 100.
+        url = j['next_page']
+        res = requests.get(url, auth=(usr, pwd))
+        data = res.json()
+        print(j['tickets'])
+        j['tickets'] += data['tickets']
+        print(j['tickets'])
+        j['next_page'] = data['next_page']
+        print(url, j['next_page'])
+
+    print(len(j['tickets']))
+    return j
