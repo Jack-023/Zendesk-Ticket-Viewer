@@ -3,7 +3,7 @@
 # This is the main file for Zendesk Ticket Viewer.
 # This is a command line program that uses the Zendesk API to display ticket information.
 
-import InputHandler, API_Requests as api, OutputHandler
+import InputHandler, API_Requests as api
 
 
 print("Welcome to Zendesk Ticket Viewer by Jack Jordan.")
